@@ -132,7 +132,6 @@ void loop() {
   // put your main code here, to run repeatedly:
   if(Serial.available()) {
     received_integer = Serial.parseInt();
-    Serial.println(availableMemory());
     nDigits = lengthOfArray(received_integer);
 
     if(nDigits < 4) {
