@@ -9,12 +9,12 @@ def getTimeAsInt():
     splitTime = str(thisTime).split(' ')
     fullTimeString = splitTime[1]
     cutTime = fullTimeString.split(':')
-    print('fine grained time = ' + cutTime[0] + ':' + cutTime[1] + cutTime[2])
+    #print('fine grained time = ' + cutTime[0] + ':' + cutTime[1] + cutTime[2])
     return int(cutTime[0] + cutTime[1])
 
 #send time through serial port to arduino in weird expected format that works
 def sendTimeIntToArduino(serialObj, n):
-    serialObj.write('d%s'%n)
+    serialObj.write('%s'%n)
 
 #set up serial class object
 try:
