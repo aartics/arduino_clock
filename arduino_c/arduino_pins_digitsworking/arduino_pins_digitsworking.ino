@@ -1,12 +1,12 @@
-const int DIG_D = 6;
-const int DIG_C = 5;
-const int DIG_B = 4;
-const int DIG_A = 3;
+const int DIG_D = 5;
+const int DIG_C = 4;
+const int DIG_B = 3;
+const int DIG_A = 2;
 
-const int LATCH_M1 = 9;
-const int LATCH_M2 = 10;
-const int LATCH_H1 = 11;
-const int LATCH_H2= 12;
+const int LATCH_H1 = 9;
+const int LATCH_H2 = 10;
+const int LATCH_M1 = 11;
+const int LATCH_M2= 12;
 
 int incomingByte = 0;
 int my_int;
@@ -96,7 +96,7 @@ void convertIntegerToDCBA(int my_int) {
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   // decoder latch pins
   pinMode(LATCH_M1, OUTPUT);
@@ -110,18 +110,6 @@ void setup() {
   pinMode(DIG_C, OUTPUT);
   pinMode(DIG_D, OUTPUT);
 
-  digitalWrite(LATCH_M1, LOW);
-  digitalWrite(LATCH_M2, LOW);
-  digitalWrite(LATCH_H1, LOW);
-  digitalWrite(LATCH_H2, LOW);
-  //convertIntegerToDCBA(my_int);
-  digitalWrite(LATCH_M1, HIGH);
-  digitalWrite(LATCH_M2, HIGH);
-  digitalWrite(LATCH_H1, HIGH);
-  digitalWrite(LATCH_H2, HIGH);
-
-  //Serial.println("8888");
-
 }
 
 int lengthOfArray(int my_integer_array) {
@@ -132,16 +120,15 @@ void loop() {
   // put your main code here, to run repeatedly:
   if(Serial.available()) {
     received_integer = Serial.parseInt();
-    //Serial.println(received_integer);
     nDigits = lengthOfArray(received_integer);
 
     if(nDigits < 4) {
       array_of_time_pi = convertNumberIntoArray(received_integer);
 
-      array_of_time_arduino[0] = 0;
-      array_of_time_arduino[1] = array_of_time_pi[0];
-      array_of_time_arduino[2] = array_of_time_pi[1];
-      array_of_time_arduino[3] = array_of_time_pi[2];
+      array_of_time_arduino[3] = 0;
+      array_of_time_arduino[0] = array_of_time_pi[0];
+      array_of_time_arduino[1] = array_of_time_pi[1];
+      array_of_time_arduino[2] = array_of_time_pi[2];
 
       digitalWrite(LATCH_M1, LOW);
       convertIntegerToDCBA(array_of_time_arduino[3]);
