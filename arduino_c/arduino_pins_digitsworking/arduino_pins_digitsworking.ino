@@ -96,7 +96,7 @@ void convertIntegerToDCBA(int my_int) {
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // decoder latch pins
   pinMode(LATCH_M1, OUTPUT);
